@@ -1,10 +1,11 @@
 
+
 public abstract class ContaBase {
 
 	private final int agenciaPadrao = 0;
 	private int numero;
 	private double saldo;
-	private double taxaPadrao;
+	private double taxaPadrao = 0.50;
 
 	public ContaBase(int numero) {
 		this.numero = numero;
@@ -16,7 +17,7 @@ public abstract class ContaBase {
 		}
 
 		if (getSaldo() >= (valor)) {
-			setSaldo(getSaldo() - valor);
+			this.saldo = (getSaldo() - valor);
 		}
 
 		else {
@@ -35,7 +36,7 @@ public abstract class ContaBase {
 			auxTaxa = taxaPadrao;
 		}
 		if (getSaldo() >= (valor + auxTaxa)) {
-			setSaldo(getSaldo() - (valor + auxTaxa));
+			this.saldo = getSaldo() - (valor + auxTaxa);
 			conta.depositar(valor);
 		} else {
 			System.out.println("SALDO INSUFICIENTE!");
@@ -55,16 +56,15 @@ public abstract class ContaBase {
 		return saldo;
 	}
 
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
-	}
-
 	public double getTaxaPadrao() {
 		return taxaPadrao;
 	}
 
-	public void setTaxaPadrao(double taxaPadrao) {
-		this.taxaPadrao = taxaPadrao;
+	@Override
+	public String toString() {
+		return "ContaBase [saldo=" + saldo + "]";
 	}
 
+	
+	
 }
